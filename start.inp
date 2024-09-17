@@ -1,0 +1,22 @@
+title   BBS32-20                #title name length is 30
+mode    1   	                      #mode 1 is in mol%, and 2 is in ratio
+SiO2    55
+Al2O3   15
+B2O3    5
+P2O5    0
+ZrO2    0
+Na2O    25
+CaO     0
+SrO     0
+Li2O    0
+K2O     0
+MgO     0
+BaO     0
+ZnO     0
+Y2O3    0
+nsize 11006
+cutoff  10.0                          #cutoff value in the TABLE
+ngrid   8004     		      #number of the grids
+density 2.8
+charges 1.0                         #charge scaling factor
+

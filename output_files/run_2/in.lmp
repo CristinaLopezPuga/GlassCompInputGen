@@ -1,0 +1,49 @@
+#set units      unit style              
+units           metal                   
+#set boundary   x y z                   
+boundary        p p p                   
+#set atom_style style args              
+atom_style      charge                  
+#set lattice                            
+read_data       input.dat               
+#set            charge and mass         
+    #charge-scaling factor:    1.000
+set             type 1 charge   -1.200
+set             type 2 charge    2.400
+set             type 3 charge    1.800
+set             type 4 charge    1.800
+set             type 5 charge    0.600
+mass            1   15.9994
+mass            2   28.0850
+mass            3   26.9815
+mass            4   10.8110
+mass            5   22.9898
+#set            neighbor list           
+neighbor        3 bin                   
+neigh_modify    every 1 delay 0 check no
+#set            pair style              
+    pair_style      hybrid/overlay coul/long  10 table linear 8000              
+pair_coeff      * * coul/long           
+pair_coeff      1 1 table TABLE-lmp OO   10
+pair_coeff      1 2 table TABLE-lmp SiO  10
+pair_coeff      1 3 table TABLE-lmp AlO  10
+pair_coeff      1 4 table TABLE-lmp BO   10
+pair_coeff      1 5 table TABLE-lmp NaO  10
+pair_coeff      2 2 table TABLE-lmp SiSi 10
+pair_coeff      2 3 table TABLE-lmp AlSi 10
+pair_coeff      2 4 table TABLE-lmp BSi  10
+pair_coeff      2 5 table TABLE-lmp NaSi 10
+pair_coeff      3 3 table TABLE-lmp AlAl 10
+pair_coeff      3 4 table TABLE-lmp BAl  10
+pair_coeff      3 5 table TABLE-lmp NaAl 10
+pair_coeff      4 4 table TABLE-lmp BB   10
+pair_coeff      4 5 table TABLE-lmp NaB  10
+pair_coeff      5 5 table TABLE-lmp NaNa 10
+#set            kspace                  
+  kspace_style    pppm 1.0e-5           
+#set            timesteps and thermo    
+timestep        0.001 #1fs              
+thermo          10                      
+ thermo_style    custom step dt temp press  etotal enthalpy vol              
+                                        
+include simulation.mod                  
